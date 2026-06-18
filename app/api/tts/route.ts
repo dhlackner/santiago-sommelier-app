@@ -24,7 +24,9 @@ export async function POST(request: NextRequest) {
     const azureUrl = `https://${region}.tts.speech.microsoft.com/cognitiveservices/v1`;
 
     const voiceCustomization = getVoiceCustomization(voice);
-    const ssml = `<speak version='1.0' xml:lang='en-US'><voice name='${voice}' pitch='${voiceCustomization.pitch}' rate='${voiceCustomization.rate}'>${escapeXml(text)}</voice></speak>`;
+    const maxChars = 900;
+    const truncatedText = text.length > maxChars ? text.substring(0, maxChars).trim() + '...' : text;
+    const ssml = `<speak version='1.0' xml:lang='en-US'><voice name='${voice}' pitch='${voiceCustomization.pitch}' rate='${voiceCustomization.rate}'>${escapeXml(truncatedText)}</voice></speak>`;
 
     const response = await fetch(azureUrl, {
       method: 'POST',

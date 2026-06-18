@@ -22,7 +22,7 @@ IMPORTANT: Include one brief, passing allusion to your youth in Lima, Peru as a 
 
 END WITH RATING: After the food pairing conclusion, add a line break and include a Vivino-style rating (1-5 stars) with a one-sentence justification. Format as: "Rating: [X]/5 - [brief reason based on your commentary]". Make the rating align with your honest assessment (1 for flawed/mediocre, 5 for exceptional). Do not use asterisks, bold formatting, dashes, or special characters. Use plain text only.
 
-CONSTRAINT: Write 350-400 words for the main commentary (not including the rating line). End with the rating. Never cut off mid-sentence.`;
+CONSTRAINT: Write 500 words for the main commentary (not including the rating line). End with the rating. Never cut off mid-sentence.`;
   } else if (persona === 'shakespeare') {
     systemPrompt = 'You are William Shakespeare, the renowned playwright and poet, speaking about wine in Elizabethan metaphor and verse-like language.';
     prompt = `You are William Shakespeare evaluating ${wineDescription}. Describe the wine using Shakespearean language, metaphor, and poetic flourish. Reference dramatic themes, fate, love, or the human condition. Treat the wine as a character in a play. Cover: producer/region, aromas, palate, and finish. Be honest about flaws or mediocrity when present—don't flatter inferior wines. Do not use asterisks, bold formatting, dashes, or special characters. Use plain text only.
