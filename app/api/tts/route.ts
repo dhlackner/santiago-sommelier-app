@@ -23,7 +23,8 @@ export async function POST(request: NextRequest) {
 
     const azureUrl = `https://${region}.tts.speech.microsoft.com/cognitiveservices/v1`;
 
-    const ssml = `<speak version='1.0' xml:lang='en-US'><voice name='${voice}'>${escapeXml(text)}</voice></speak>`;
+    const voiceCustomization = getVoiceCustomization(voice);
+    const ssml = `<speak version='1.0' xml:lang='en-US'><voice name='${voice}' pitch='${voiceCustomization.pitch}' rate='${voiceCustomization.rate}'>${escapeXml(text)}</voice></speak>`;
 
     const response = await fetch(azureUrl, {
       method: 'POST',
@@ -59,6 +60,13 @@ export async function POST(request: NextRequest) {
       { status: 500 }
     );
   }
+}
+
+function getVoiceCustomization(voice: string): { pitch: string; rate: string } {
+  const customizations: { [key: string]: { pitch: string; rate: string } } = {
+    'en-US-JacobNeural': { pitch: '-15%', rate: '0.95' },
+  };
+  return customizations[voice] || { pitch: '0%', rate: '1.0' };
 }
 
 function escapeXml(str: string): string {
