@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server';
-import OpenAI from 'openai';
 
 export async function POST(request: NextRequest) {
   try {
@@ -12,14 +11,40 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
-    const mp3 = await openai.audio.speech.create({
-      model: 'tts-1',
-      voice: voice,
-      input: text,
+    const subscriptionKey = process.env.AZURE_SPEECH_KEY;
+    const region = process.env.AZURE_SPEECH_REGION;
+
+    if (!subscriptionKey || !region) {
+      return NextResponse.json(
+        { error: 'Azure Speech configuration missing' },
+        { status: 500 }
+      );
+    }
+
+    const azureUrl = `https://${region}.tts.speech.microsoft.com/cognitiveservices/v1`;
+
+    const ssml = `<speak version='1.0' xml:lang='en-US'><voice name='${voice}'>${escapeXml(text)}</voice></speak>`;
+
+    const response = await fetch(azureUrl, {
+      method: 'POST',
+      headers: {
+        'Ocp-Apim-Subscription-Key': subscriptionKey,
+        'Content-Type': 'application/ssml+xml',
+        'X-Microsoft-OutputFormat': 'audio-16khz-32kbitrate-mono-mp3',
+      },
+      body: ssml,
     });
 
-    const buffer = await mp3.arrayBuffer();
+    if (!response.ok) {
+      const error = await response.text();
+      console.error('Azure TTS error:', error);
+      return NextResponse.json(
+        { error: 'Failed to generate speech' },
+        { status: response.status }
+      );
+    }
+
+    const buffer = await response.arrayBuffer();
 
     return new NextResponse(buffer, {
       headers: {
@@ -34,4 +59,13 @@ export async function POST(request: NextRequest) {
       { status: 500 }
     );
   }
+}
+
+function escapeXml(str: string): string {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;');
 }

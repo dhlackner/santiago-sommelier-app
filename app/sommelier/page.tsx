@@ -4,10 +4,10 @@ import { useState, useEffect, useRef } from 'react';
 import { getTasting } from './actions';
 
 const voiceMap: { [key: string]: string } = {
-  santiago: 'echo',
-  shakespeare: 'fable',
-  snoop: 'onyx',
-  cunk: 'shimmer',
+  santiago: 'en-US-AriaNeural',
+  shakespeare: 'en-GB-ThomasNeural',
+  snoop: 'en-US-GuyNeural',
+  cunk: 'en-GB-MiaNeural',
 };
 
 const personaNames: { [key: string]: string } = {
