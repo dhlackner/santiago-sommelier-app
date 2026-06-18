@@ -89,7 +89,7 @@ export default function Santiago() {
     ];
 
     const timeouts = messages.map((msg, index) =>
-      setTimeout(() => setLoadingText(msg), index * 5000)
+      setTimeout(() => setLoadingText(msg), index * 2000)
     );
 
     return () => timeouts.forEach(timeout => clearTimeout(timeout));
