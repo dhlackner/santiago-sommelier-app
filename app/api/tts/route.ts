@@ -40,9 +40,15 @@ export async function POST(request: NextRequest) {
 
     if (!response.ok) {
       const error = await response.text();
-      console.error('Azure TTS error:', error);
+      console.error('Azure TTS error:', {
+        status: response.status,
+        statusText: response.statusText,
+        error,
+        voice,
+        textLength: truncatedText.length,
+      });
       return NextResponse.json(
-        { error: 'Failed to generate speech' },
+        { error: `Azure TTS failed: ${error}` },
         { status: response.status }
       );
     }

@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { getTasting } from './actions';
 
 const voiceMap: { [key: string]: string } = {
-  santiago: 'en-US-RyanNeural',
+  santiago: 'en-US-BrianNeural',
   shakespeare: 'en-GB-ThomasNeural',
   snoop: 'en-US-JacobNeural',
   cunk: 'en-GB-MiaNeural',
