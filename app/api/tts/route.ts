@@ -26,7 +26,7 @@ export async function POST(request: NextRequest) {
     const voiceCustomization = getVoiceCustomization(voice);
     const maxChars = 900;
     const truncatedText = text.length > maxChars ? text.substring(0, maxChars).trim() + '...' : text;
-    const ssml = `<speak version='1.0' xml:lang='en-US'><voice name='${voice}' pitch='${voiceCustomization.pitch}' rate='${voiceCustomization.rate}'>${escapeXml(truncatedText)}</voice></speak>`;
+    const ssml = `<speak version='1.0' xml:lang='en-US'><voice name='${voice}'><prosody pitch='${voiceCustomization.pitch}' rate='${voiceCustomization.rate}'>${escapeXml(truncatedText)}</prosody></voice></speak>`;
 
     const response = await fetch(azureUrl, {
       method: 'POST',
