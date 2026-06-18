@@ -24,9 +24,7 @@ export async function POST(request: NextRequest) {
     const azureUrl = `https://${region}.tts.speech.microsoft.com/cognitiveservices/v1`;
 
     const voiceCustomization = getVoiceCustomization(voice);
-    const maxChars = 900;
-    const truncatedText = text.length > maxChars ? text.substring(0, maxChars).trim() + '...' : text;
-    const ssml = `<speak version='1.0' xml:lang='en-US'><voice name='${voice}'><prosody pitch='${voiceCustomization.pitch}' rate='${voiceCustomization.rate}'>${escapeXml(truncatedText)}</prosody></voice></speak>`;
+    const ssml = `<speak version='1.0' xml:lang='en-US'><voice name='${voice}'><prosody pitch='${voiceCustomization.pitch}' rate='${voiceCustomization.rate}'>${escapeXml(text)}</prosody></voice></speak>`;
 
     const response = await fetch(azureUrl, {
       method: 'POST',
@@ -45,7 +43,7 @@ export async function POST(request: NextRequest) {
         statusText: response.statusText,
         error,
         voice,
-        textLength: truncatedText.length,
+        textLength: text.length,
       });
       return NextResponse.json(
         { error: `Azure TTS failed: ${error}` },
