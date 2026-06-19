@@ -89,7 +89,7 @@ export default function Santiago() {
       `${firstName} IS ALMOST READY...`
     ];
 
-    const interval = mode === 'sip' ? 1000 : 2000;
+    const interval = mode === 'sip' ? 500 : 2000;
     const timeouts = messages.map((msg, index) =>
       setTimeout(() => setLoadingText(msg), index * interval)
     );
