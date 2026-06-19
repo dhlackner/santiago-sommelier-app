@@ -28,6 +28,7 @@ export default function Santiago() {
   const [showNotes, setShowNotes] = useState(false);
   const [speechRate, setSpeechRate] = useState(1);
   const [persona, setPersona] = useState('santiago');
+  const [mode, setMode] = useState<'savor' | 'sip'>('savor');
   const audioRef = useRef<HTMLAudioElement>(null);
   const audioBlob = useRef<Blob | null>(null);
 
@@ -107,7 +108,7 @@ export default function Santiago() {
 
     try {
       // Get tasting notes
-      const textContent = await getTasting(wineName, vintage, persona);
+      const textContent = await getTasting(wineName, vintage, persona, mode);
 
       // Generate audio
       const voice = voiceMap[persona];
@@ -260,6 +261,19 @@ export default function Santiago() {
                 <option value="shakespeare">William Shakespeare</option>
                 <option value="snoop">Snoop Dog</option>
                 <option value="cunk">Philomena Cunk</option>
+              </select>
+            </div>
+
+            <div style={styles.formGroup}>
+              <label style={styles.label}>Tasting Mode</label>
+              <select
+                value={mode}
+                onChange={(e) => setMode(e.target.value as 'savor' | 'sip')}
+                style={styles.input}
+                disabled={isLoading}
+              >
+                <option value="savor">Savor (500-word deep dive)</option>
+                <option value="sip">Sip (50-word quick taste)</option>
               </select>
             </div>
 
