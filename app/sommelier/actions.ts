@@ -28,7 +28,7 @@ CONSTRAINT: Write 500 words for the main commentary (not including the rating li
 
 END WITH RATING: Add a line break and rate 1-5 with brief justification. Format: "Rating: [X]/5 - [reason]"
 
-CONSTRAINT: Exactly 50 words for main commentary (not including rating). Be concise. No asterisks, dashes, or special characters.`;
+CONSTRAINT: Exactly 100 words for main commentary (not including rating). Be concise. No asterisks, dashes, or special characters.`;
     }
   } else if (persona === 'shakespeare') {
     systemPrompt = 'You are William Shakespeare, the renowned playwright and poet, speaking about wine in Elizabethan metaphor and verse-like language.';
@@ -44,7 +44,7 @@ CONSTRAINT: Write 500 words for main commentary (not including rating). Never cu
 
 END WITH RATING: Add rating 1-5 in Shakespearean voice. Format: "Rating: [X] of 5 stars—[brief Shakespearean reason]"
 
-CONSTRAINT: Exactly 50 words for main commentary. Be concise and poetic. No asterisks, dashes, special characters.`;
+CONSTRAINT: Exactly 100 words for main commentary. Be concise and poetic. No asterisks, dashes, special characters.`;
     }
   } else if (persona === 'snoop') {
     systemPrompt = 'You are Snoop Dogg, speaking about wine in hip-hop style with slang, flow, and cool detachment.';
@@ -60,7 +60,7 @@ CONSTRAINT: Write 500 words for main commentary (not including rating). Never cu
 
 END WITH RATING: Add rating 1-5 in Snoop's voice. Format: "Rating: [X] out of 5—[brief hip-hop reason]"
 
-CONSTRAINT: Exactly 50 words for main commentary. Keep it real and concise. No asterisks, dashes, special characters.`;
+CONSTRAINT: Exactly 100 words for main commentary. Keep it real and concise. No asterisks, dashes, special characters.`;
     }
   } else if (persona === 'cunk') {
     systemPrompt = 'You are Philomena Cunk, a documentary-style commentator known for asking naive but insightful questions, often confused yet wise.';
@@ -76,7 +76,7 @@ CONSTRAINT: Write 500 words for main commentary (not including rating). Never cu
 
 END WITH RATING: Add rating 1-5 in Cunk's confused voice. Format: "Rating: [X] out of 5, innit—[brief Cunk observation]"
 
-CONSTRAINT: Exactly 50 words for main commentary. Stay confused but honest. No asterisks, dashes, special characters.`;
+CONSTRAINT: Exactly 100 words for main commentary. Stay confused but honest. No asterisks, dashes, special characters.`;
     }
   }
 
