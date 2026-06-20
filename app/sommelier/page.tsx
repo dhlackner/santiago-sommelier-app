@@ -7,7 +7,7 @@ const voiceMap: { [key: string]: string } = {
   santiago: 'en-US-BrianNeural',
   shakespeare: 'en-GB-ThomasNeural',
   snoop: 'en-US-JacobNeural',
-  cunk: 'en-GB-MiaNeural',
+  cunk: 'en-GB-AdaMultilingualNeural',
 };
 
 const personaNames: { [key: string]: string } = {
