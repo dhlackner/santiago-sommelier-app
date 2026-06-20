@@ -6,14 +6,14 @@ import { getTasting } from './actions';
 const voiceMap: { [key: string]: string } = {
   santiago: 'en-US-BrianNeural',
   shakespeare: 'en-GB-ThomasNeural',
-  snoop: 'en-US-JacobNeural',
+  paris: 'en-US-AnaNeural',
   cunk: 'en-GB-AdaMultilingualNeural',
 };
 
 const personaNames: { [key: string]: string } = {
   santiago: 'Santiago',
   shakespeare: 'William',
-  snoop: 'Snoop',
+  paris: 'Paris',
   cunk: 'Philomena',
 };
 
@@ -89,7 +89,7 @@ export default function Santiago() {
       `${firstName} IS ALMOST READY...`
     ];
 
-    const interval = mode === 'sip' ? 500 : 2000;
+    const interval = mode === 'sip' ? 700 : 2000;
     const timeouts = messages.map((msg, index) =>
       setTimeout(() => setLoadingText(msg), index * interval)
     );
@@ -260,7 +260,7 @@ export default function Santiago() {
               >
                 <option value="santiago">Santiago</option>
                 <option value="shakespeare">William Shakespeare</option>
-                <option value="snoop">Snoop Dog</option>
+                <option value="paris">Paris Hilton</option>
                 <option value="cunk">Philomena Cunk</option>
               </select>
             </div>
