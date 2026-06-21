@@ -6,7 +6,7 @@ import { getTasting } from './actions';
 const voiceMap: { [key: string]: string } = {
   santiago: 'en-US-BrianNeural',
   shakespeare: 'en-GB-ThomasNeural',
-  paris: 'en-US-AnaNeural',
+  paris: 'en-US-EvelynMultilingualNeural',
   cunk: 'en-GB-AdaMultilingualNeural',
 };
 
